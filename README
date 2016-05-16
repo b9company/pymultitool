@@ -1,0 +1,162 @@
+===================
+README: Pymultitool
+===================
+
+:Author: Vincent Besanceney
+:Contact: support@rubycube.fr
+:Date: $DateTime: 2008/01/13 13:13:24 $
+:Copyright: (c) 2007, 2008, Rubycube. All rights reserved.
+
+.. contents:: Table of Contents
+
+
+Introduction
+============
+
+Pymultitool is a Python extension that provides a high-level interface to `IBM
+Rational ClearCase MultiSite`_, suitable for scripting solutions.  Pymultitool
+links directly against ClearCase libraries, preventing you from
+extra-processing usually encountered in scripts that interact with ClearCase
+MultiSite, where the creation of a multitool subprocess is required to handle a
+request.
+
+.. _IBM Rational ClearCase MultiSite:
+   http://www.ibm.com/software/awdtools/clearcase/index.html
+
+
+System Requirements
+===================
+
+The table below summarizes the basic platform, hardware, and software
+requirements for Pymultitool to build, install, and run.
+
+.. table:: Pymultitool System Requirements
+
+   +--------------+-----------------+-----------------+-------------------+
+   | Platform     | System          | Python          | ClearCase         |
+   +==============+=================+=================+===================+
+   | SPARC        | Solaris 8       | 2.4 or higher   | 2003.06 or higher |
+   |              | Solaris 9       |   "       "     |   "       "       |
+   |              | Solaris 10      |   "       "     |   "       "       |
+   +--------------+-----------------+-----------------+-------------------+
+   | I86          | Linux RH 7.0    | 2.4 or higher   | 2003.06 or higher |
+   |              | Linux RH 7.1    |   "       "     |   "       "       |
+   |              | Linux RH 7.2    |   "       "     |   "       "       |
+   +--------------+-----------------+-----------------+-------------------+
+   | I86          | Windows XP Pro  | 2.4 or higher   | 2003.06 or higher |
+   |              | Windows 2000    |   "       "     |   "       "       |
+   +--------------+-----------------+-----------------+-------------------+
+
+
+What's New
+==========
+
+This section describes new features, restrictions, guidelines, and other
+changes in version 2007.01 of Pymultitool.
+
+New Features
+------------
+
+This is the initial release of Pymultitool.  Pymultitool comes with the
+following features:
+
+- Support of SPARC/Solaris platform.
+- Support of I86/Solaris platform.
+- Support of I86/Linux platform.
+- Support of I86/Windows platform.
+- Access to ClearCase MultiSite commands through the multitool.cmd() routine.
+- Application name used by ClearCase subsystem can be customized through the
+  multitool.set_app_name() routine.
+- ClearCase MultiSite version used to build the Pymultitool extension is
+  available through the multitool.version() routine.
+
+Restrictions and Guidelines
+---------------------------
+
+SPARC/Solaris with IBM Rational ClearCase MultiSite versions prior to 7.0
+.........................................................................
+
+Pymultitool uses a Sun interposer implemented in ``libzuba.so`` to tell the
+runtime loader to load RPC functions from the correct library.  However,
+interposers are broken on Solaris 8 and 9 by some recent (as of April 23,
+2005) Solaris patches.  See Sun defect 5105601:
+
+    "ld.so.1 gets a little too enthusiastic with interposition".
+
+If Pymultitool is broken by one of the patches below, or one of the
+corresponding Solaris 2.8 patches, it may be possible to set the
+``LD_PRELOAD`` environment variable to ``/usr/ucblib/librpcsoc.so`` to run
+Pymultitool.
+
+.. table:: Solaris 9 Patch Level Impact on Pymultitool
+
+   +-------------------------+---------------------------------------------+
+   | Patch Number            | Does Pymultitool work?                      |
+   +=========================+=============================================+
+   | 112963-07               | Yes                                         |
+   +-------------------------+---------------------------------------------+
+   | 112963-09               | Yes                                         |
+   +-------------------------+---------------------------------------------+
+   | 112963-12               | Yes                                         |
+   +-------------------------+---------------------------------------------+
+   | 112963-13               | No                                          |
+   +-------------------------+---------------------------------------------+
+   | 112963-14               | No                                          |
+   +-------------------------+---------------------------------------------+
+   | 112963-17               | Yes                                         |
+   +-------------------------+---------------------------------------------+
+   | 112963-18               | No                                          |
+   +-------------------------+---------------------------------------------+
+   | 112963-19               | No                                          |
+   +-------------------------+---------------------------------------------+
+
+
+Installation
+============
+
+See the ``INSTALL`` file.
+
+
+Documentation
+=============
+
+Pymultitool is self-documented through _doc__ strings.  Once Pymultitool is
+installed, you can gain access to the documentation with the ``help()``
+function, as follows::
+
+    >>> import multitool
+    >>> help(multitool)
+
+
+Licensing
+=========
+
+See the file called ``LICENSE``.
+
+
+Status of Change Requests
+=========================
+
+.. table:: Known Problems
+
+   +----------------+------------------------------------------------------+
+   | Problem Number | Description                                          |
+   +================+======================================================+
+   | -              |                                                      |
+   +----------------+------------------------------------------------------+
+
+.. table:: Problems Fixed in This Release
+
+   +----------------+------------------------------------------------------+
+   | Problem Number | Description                                          |
+   +================+======================================================+
+   | -              |                                                      |
+   +----------------+------------------------------------------------------+
+
+.. table:: Disposition of Problems Reported in Previous Releases
+
+   +----------------+----------------+-------------------------------------+
+   | Problem Number | Status         | Description                         |
+   +================+================+=====================================+
+   | -              |                |                                     |
+   +----------------+----------------+-------------------------------------+
